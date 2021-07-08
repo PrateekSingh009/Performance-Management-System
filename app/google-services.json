@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "443188012292",
+    "project_id": "performancemanagementsys-3f7d1",
+    "storage_bucket": "performancemanagementsys-3f7d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443188012292:android:66ee8a11237e119bb39c51",
+        "android_client_info": {
+          "package_name": "com.example.performancemanagementsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "443188012292-87t7u30ofehli4mc80d4gjosjpn5tb1j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.performancemanagementsystem",
+            "certificate_hash": "454b6e9a4b73ffff23084fb7e6f439b1ea4d71d7"
+          }
+        },
+        {
+          "client_id": "443188012292-kpekuk7cf9sqpg82tf201nkmkae06v7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC45V8jjvZ0vy7U1q08LW42ilp7FnFskBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "443188012292-kpekuk7cf9sqpg82tf201nkmkae06v7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

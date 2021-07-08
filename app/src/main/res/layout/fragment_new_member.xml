@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_background"
+        android:orientation="vertical"
+        tools:context=".Fragments.NewMemberFragment">
+<!--        <TextView-->
+<!--            android:layout_width="420dp"-->
+<!--            android:layout_height="140dp"-->
+<!--            android:background="@drawable/button"-->
+<!--            android:backgroundTint="@color/text_color"-->
+<!--            android:layout_centerHorizontal="true"/>-->
+
+
+        <LinearLayout
+            android:id="@+id/layout_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+
+            android:orientation="horizontal">
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="30dp"
+                android:layout_height="150dp"
+
+                android:layout_marginTop="-20dp"
+                app:neumorph_shadowColorDark="@color/text_color" />
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="30dp"
+
+                android:layout_height="120dp"
+                android:layout_marginTop="-20dp"
+                app:neumorph_shadowColorDark="@color/text_color"
+
+                />
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="30dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="-20dp"
+                app:neumorph_shadowColorDark="@color/text_color" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_logo"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Performate"
+                android:textColor="@color/text_color"
+                android:textSize="40sp"
+                android:transitionName="logo_text" />
+
+        </LinearLayout>
+
+
+        <soup.neumorphism.NeumorphCardView
+            android:id="@+id/new_org"
+            android:layout_below="@id/layout_logo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            app:neumorph_shapeType="basin"
+            app:neumorph_shadowElevation="6dp"
+            android:layout_centerHorizontal="true"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/structure"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/delius"
+                    android:text="New Organisation"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="18dp" />
+            </LinearLayout>
+        </soup.neumorphism.NeumorphCardView>
+
+        <soup.neumorphism.NeumorphCardView
+            android:id="@+id/exist_org"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            app:neumorph_shapeType="basin"
+            android:layout_below="@id/new_org"
+            android:layout_centerHorizontal="true"
+            app:neumorph_shadowElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/group"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/delius"
+
+                    android:text="Existing Organisation"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+        </soup.neumorphism.NeumorphCardView>
+
+
+    </RelativeLayout>
+</layout>

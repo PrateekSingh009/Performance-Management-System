@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/biryani_extralight</item>
+        <item>@font/biryani_semibold</item>
+        <item>@font/buenard_bold</item>
+        <item>@font/cairo</item>
+        <item>@font/delius</item>
+        <item>@font/el_messiri</item>
+        <item>@font/gudea</item>
+    </array>
+</resources>

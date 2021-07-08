@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <soup.neumorphism.NeumorphCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:neumorph_shapeType="flat">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_background"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:inputType="textEmailAddress"
+            android:padding="20dp"
+            android:text="Enter Company Code"
+            android:textColor="@color/text_color"
+            android:textSize="25dp" />
+
+
+        <soup.neumorphism.NeumorphCardView
+            style="@style/Widget.Neumorph.CardView"
+            app:neumorph_shapeType="pressed"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+
+            android:layout_marginEnd="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/qrcode"
+                    android:layout_marginStart="20dp"/>
+                <EditText
+                    android:id="@+id/et_code"
+                    android:hint="Code"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/text_color"
+                    android:textCursorDrawable="@drawable/cursor"
+                    android:background="@drawable/no_backgound"
+                    android:inputType="number"
+                    />
+            </LinearLayout>
+
+
+        </soup.neumorphism.NeumorphCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="right">
+
+            <TextView
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/text_color"
+                android:padding="10dp"
+                android:text="Cancel"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/text_color" />
+
+            <TextView
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:backgroundTint="@color/text_color"
+                android:padding="10dp"
+                android:text="Join"
+                android:textSize="20dp"
+                android:textColor="@color/text_color" />
+        </LinearLayout>
+
+    </LinearLayout>
+</soup.neumorphism.NeumorphCardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/light_background"
+    tools:context=".Fragments.DashFragment">
+
+    <TextView
+        android:id="@+id/blue"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@drawable/button"
+        android:backgroundTint="@color/text_color"
+        android:layout_centerHorizontal="true"
+        tools:ignore="MissingConstraints" />
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/button"
+        android:backgroundTint="@color/light_background"
+        android:layout_marginRight="22dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        tools:ignore="MissingConstraints" />
+
+
+
+
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/blue"
+    android:gravity="center_horizontal">
+    <soup.neumorphism.NeumorphCardView
+
+        android:id="@+id/createFeed"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        app:neumorph_shapeType="flat"
+        app:neumorph_shadowElevation="6dp"
+        android:layout_centerHorizontal="true"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/feedback"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="112dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/delius"
+                android:text="Create Feedback Form"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </soup.neumorphism.NeumorphCardView>
+    <soup.neumorphism.NeumorphCardView
+
+        android:id="@+id/pendingFeed"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        app:neumorph_shapeType="flat"
+        app:neumorph_shadowElevation="6dp"
+        android:layout_centerHorizontal="true"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/form"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/delius"
+                android:text="Pending Feedback"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </soup.neumorphism.NeumorphCardView>
+</LinearLayout>
+
+
+
+</RelativeLayout>
