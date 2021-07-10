@@ -49,6 +49,10 @@ class CustomDialog(username: String, email: String, uid: String) :DialogFragment
                 val ccode = editText.text.toString()
                 Log.d("CompanyCode",ccode)
 
+                val feedlist = ArrayList<String>()
+                feedlist!!.add("")
+                var dbrefFeedbackList = FirebaseDatabase.getInstance().getReference("FeedbackList")
+                dbrefFeedbackList.child(ccode).child(auth.uid!!).setValue(feedlist)
                 val dbref = FirebaseDatabase.getInstance().getReference("CompanyInfo")
                 var once = 0
                 dbref.addListenerForSingleValueEvent(object : ValueEventListener{
@@ -98,11 +102,6 @@ class CustomDialog(username: String, email: String, uid: String) :DialogFragment
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 activity?.finish()
-
-
-
-
-
 
 
                 dialog!!.dismiss()

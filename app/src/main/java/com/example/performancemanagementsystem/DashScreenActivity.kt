@@ -17,10 +17,10 @@ class DashScreenActivity : AppCompatActivity() {
         Toast.makeText(this,auth.currentUser?.uid,Toast.LENGTH_SHORT).show()
 
 
-        val extras : Bundle = intent.extras!!
-        val companyCode : String = extras.getInt("companyCode").toString()
+//        val extras : Bundle = intent.extras!!
+//        val companyCode : String = extras.getInt("companyCode").toString()
         supportFragmentManager.beginTransaction()
-            .add(R.id.dash_container, DashFragment(companyCode))
+            .add(R.id.dash_container, DashFragment())
             .commit()
 
 

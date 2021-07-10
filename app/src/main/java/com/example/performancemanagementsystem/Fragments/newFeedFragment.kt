@@ -1,5 +1,6 @@
 package com.example.performancemanagementsystem.Fragments
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,34 +8,38 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.example.performancemanagementsystem.CompanyInfoModel
+import com.example.performancemanagementsystem.FeedBackListModel
 import com.example.performancemanagementsystem.FeedbackModel
+import com.example.performancemanagementsystem.Fragments.NewOrgFragment.Companion.generatedcompanyCode
 import com.example.performancemanagementsystem.R
 import com.example.performancemanagementsystem.databinding.FragmentNewFeedBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-import kotlinx.android.synthetic.main.fragment_new_feed.*
 
-
-class newFeedFragment(companyCode: String) : Fragment() {
+class newFeedFragment() : Fragment() {
 
     private lateinit var newFeedBinding: FragmentNewFeedBinding
 
-    val code = companyCode
+   private lateinit var code : String
 
-    private lateinit var dbfirestore : FirebaseFirestore
+
 
 
     private  var arrayList: ArrayList<String> = ArrayList()
 
 
 
+    private var feedb = hashMapOf<String,ArrayList<String>>()
+
     private lateinit var member : String
     private lateinit var dbref : DatabaseReference
+    private lateinit var dbrefCompanyInfo : DatabaseReference
+    private lateinit var dbrefFeedbackList :DatabaseReference
 
     private var keyValue = ""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +51,17 @@ class newFeedFragment(companyCode: String) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dbfirestore = Firebase.firestore
+
+        dbrefCompanyInfo = FirebaseDatabase.getInstance().getReference("CompanyInfo")
+
+        dbrefFeedbackList = FirebaseDatabase.getInstance().getReference("FeedbackList")
+
+
+
+
+
+
+
 
 
         newFeedBinding = DataBindingUtil.inflate(
@@ -57,8 +72,21 @@ class newFeedFragment(companyCode: String) : Fragment() {
         )
 
         dbref = FirebaseDatabase.getInstance().getReference("Feedback")
+        code = "0"
 
 
+        if(generatedcompanyCode==0)
+        {
+            dbrefCompanyInfo.child(FirebaseAuth.getInstance().uid!!).child("companyCode").get()
+                .addOnSuccessListener {
+                    code = it.value.toString()
+                    Log.i("firebase", "Got value ${it.value}")
+                }.addOnFailureListener{
+                    Log.e("firebase", "Error getting data", it)
+                }
+        }
+        else
+            code = generatedcompanyCode.toString()
 
 
 
@@ -81,54 +109,128 @@ class newFeedFragment(companyCode: String) : Fragment() {
 
     private fun addQues() {
 
+        val ques : String = newFeedBinding.question.text.toString()
+        if( ques.isEmpty())
+        {
+            newFeedBinding.question.error = "Field Required"
+            return
+        }
+
+
+
         if(arrayList.isEmpty())
         {
             val key = dbref.push().key
             keyValue = key.toString()
 
-            arrayList.add("How is the comunication skills?")
-            if (key != null) {
-                //val key = dbref.push().key
 
-                val feedback = FeedbackModel(key!!,code,"",arrayList)
+
+            arrayList.add(ques)
+            if (key != null) {
+
+
+                val feedback = FeedbackModel(key!!, code, "", arrayList)
                 dbref.child(key).setValue(feedback)
             }
 
         }
         else
         {
-            arrayList.add("How is the Speaking skills?")
-            val feedback = FeedbackModel(keyValue,code,"",arrayList)
+            arrayList.add(ques)
+            val feedback = FeedbackModel(keyValue, code, "", arrayList)
             dbref.child(keyValue).setValue(feedback)
 
         }
+
+        val empty:String  = ""
+        newFeedBinding.question.setText(empty)
+
+
 
 
     }
 
     private fun funcsubmit() {
 
-        Log.i("Key Value",keyValue)
 
-        val feedb = hashMapOf(
-            "Feedback Key" to keyValue
-        )
+        var arrayList = ArrayList<String>()
+
+//        dbfirestore.collection(code).document(FirebaseAuth.getInstance().uid!!).get().addOnSuccessListener { document ->
+//            if (document != null) {
+//                Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+//                arrayList = document["Feedback Key",ArrayList<String>]
+//                feedb = document.data as HashMap<String,ArrayList<String>>
+//
+//            } else {
+//                feedb = hashMapOf()
+//                Log.d(TAG, "No such document")
+//            }
+//        }
+//            .addOnFailureListener { exception ->
+//                Log.d(TAG, "get failed with ", exception)
+//            }
+//
+//
+//        if(feedb.isEmpty()){
+//            feedb.put("Feedback Key", keyValue)
+//
+//        }
+//        else{
+//            feedb.put("Feedback Key", keyValue)
+//
+//        }
+//        feedb.put("Feedback Key",keyValue )
+//        Log.i("feedb",feedb.toString())
 
 
-        dbfirestore.collection(code).document(FirebaseAuth.getInstance().uid!!).set(feedb).addOnSuccessListener {
-            Log.i("Document","Completed")
-        }
-            .addOnFailureListener {
-                Log.i("Document","Failure")
+
+
+//        dbfirestore.collection(code).document(FirebaseAuth.getInstance().uid!!).set(feedb).addOnSuccessListener {
+//            Log.i("Document", "Completed")
+//        }
+//            .addOnFailureListener {
+//                Log.i("Document", "Failure")
+//            }
+//
+
+
+
+        dbrefFeedbackList.child(code).addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for(snapshot in dataSnapshot.children){
+                val feedList : ArrayList<String> = snapshot.getValue() as ArrayList<String>
+                feedList.add(keyValue)
+                    Log.i("Key",snapshot.key!!)
+                dbrefFeedbackList.child(code).child(snapshot.key!!).setValue(feedList)}
             }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+
+        })
+
+
+
 
 
 
         member = newFeedBinding.memberName.text.toString()
+
+        if( member.isEmpty())
+        {
+            newFeedBinding.memberName.error = "Field Required"
+            return
+        }
         dbref.child(keyValue).child("member").setValue(member)
 
+
+
+
+
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.dash_container, DashFragment(code))
+            .replace(R.id.dash_container, DashFragment())
             .commit()
 
 
@@ -136,6 +238,10 @@ class newFeedFragment(companyCode: String) : Fragment() {
 
 
     }
+
+
+
+
 
 
 }

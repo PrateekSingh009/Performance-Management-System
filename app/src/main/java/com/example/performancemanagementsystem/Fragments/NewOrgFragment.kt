@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
+import kotlin.collections.ArrayList
 
 class NewOrgFragment(username: String, email: String, uid: String) : Fragment() {
 
@@ -27,6 +28,8 @@ class NewOrgFragment(username: String, email: String, uid: String) : Fragment() 
     private lateinit var database : FirebaseDatabase
     private lateinit var auth : FirebaseAuth
     private lateinit var dbref : DatabaseReference
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +58,8 @@ class NewOrgFragment(username: String, email: String, uid: String) : Fragment() 
         var hrName : String?=null
 
         val num = generatePin()
+
+        generatedcompanyCode = num
 
         newOrgBinding.genePin.text= num.toString()
 
@@ -95,6 +100,10 @@ class NewOrgFragment(username: String, email: String, uid: String) : Fragment() 
 
             dbref!!.child(auth!!.uid!!).setValue(companyInfoModel)
 
+            val feedlist = ArrayList<String>()
+            feedlist!!.add("")
+            var dbrefFeedbackList = FirebaseDatabase.getInstance().getReference("FeedbackList")
+            dbrefFeedbackList.child(num.toString()).child(auth.uid!!).setValue(feedlist)
 
             val intent = Intent(context, DashScreenActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -148,5 +157,12 @@ class NewOrgFragment(username: String, email: String, uid: String) : Fragment() 
             }
         }
         return num
+    }
+
+    companion object{
+        var generatedcompanyCode : Int = 0
+
+
+
     }
 }
