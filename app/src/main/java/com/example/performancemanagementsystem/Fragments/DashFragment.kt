@@ -1,23 +1,20 @@
 package com.example.performancemanagementsystem.Fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.View.INVISIBLE
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
-import androidx.databinding.DataBindingUtil
+import android.widget.TextView
+import com.example.performancemanagementsystem.CompanyInfoModel
 import com.example.performancemanagementsystem.R
-import com.example.performancemanagementsystem.databinding.FragmentDashBinding
+import com.example.performancemanagementsystem.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_new_org.*
 
 
 class DashFragment() : Fragment() {
@@ -38,6 +35,10 @@ class DashFragment() : Fragment() {
 
         val createCard : soup.neumorphism.NeumorphCardView = view.findViewById(R.id.createFeed)
         val pendingCard :soup.neumorphism.NeumorphCardView = view.findViewById(R.id.pendingFeed)
+        val cmpname :TextView = view.findViewById(R.id.nameComp)
+        val username :TextView = view.findViewById(R.id.Username)
+        val emailval :TextView = view.findViewById(R.id.email)
+        var cmpcode : String = ""
 
         val dbrefCompanyInfo = FirebaseDatabase.getInstance().getReference("CompanyInfo")
 
@@ -48,6 +49,22 @@ class DashFragment() : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (!snapshot.hasChild(FirebaseAuth.getInstance().uid!!)) {
                         createCard.visibility = INVISIBLE
+                    }
+                    for(snap in snapshot.children){
+                        val companyInfoModel = snap.getValue(CompanyInfoModel::class.java)
+                        val arrayList:ArrayList<UserModel> = companyInfoModel!!.memberList!!
+                        for(i in arrayList){
+                            if(i.uid == FirebaseAuth.getInstance().uid){
+                                cmpname.text = companyInfoModel.companyName
+                                cmpcode = companyInfoModel.companyCode
+                                emailval.text = i.email
+                                username.text = i.name
+
+                            }
+                        }
+
+
+
                     }
 
                 }
@@ -64,6 +81,13 @@ class DashFragment() : Fragment() {
                 .commit()
 
 
+        }
+
+        pendingCard.setOnClickListener {
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.dash_container, PendingFeedback(cmpcode))
+                .commit()
         }
 
 

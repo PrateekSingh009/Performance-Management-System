@@ -24,7 +24,7 @@
             android:id="@+id/layout_logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="20dp"
 
             android:orientation="horizontal">
@@ -59,22 +59,31 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:layout_marginStart="20dp"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="@font/cinzel_decorative_bold"
+                android:textSize="30sp"
                 android:text="Performate"
                 android:textColor="@color/text_color"
-                android:textSize="40sp"
+
                 android:transitionName="logo_text" />
 
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@+id/layout_logo"
+            android:background="@drawable/cursor"
+            android:layout_marginTop="10dp"
+            android:id="@+id/line1"
+            android:backgroundTint="@color/text_color"/>
 
 
         <soup.neumorphism.NeumorphCardView
             android:id="@+id/new_org"
-            android:layout_below="@id/layout_logo"
+            android:layout_below="@id/line1"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             app:neumorph_shapeType="basin"
             app:neumorph_shadowElevation="6dp"
             android:layout_centerHorizontal="true"
@@ -109,7 +118,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             app:neumorph_shapeType="basin"
             android:layout_below="@id/new_org"
             android:layout_centerHorizontal="true"
@@ -140,6 +149,15 @@
             </LinearLayout>
 
         </soup.neumorphism.NeumorphCardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@+id/exist_org"
+            android:background="@drawable/cursor"
+            android:layout_marginTop="20dp"
+            android:id="@+id/line2"
+            android:backgroundTint="@color/text_color"/>
 
 
     </RelativeLayout>

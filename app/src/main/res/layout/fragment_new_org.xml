@@ -48,10 +48,11 @@
 
                 android:layout_gravity="center"
                 android:layout_marginStart="20dp"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="@font/cinzel_decorative_bold"
+                android:textSize="30sp"
                 android:text="Performate"
                 android:textColor="@color/text_color"
-                android:textSize="40sp"
+
                 android:transitionName="logo_text" />
 
         </LinearLayout>
@@ -61,9 +62,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/layout_logo"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:paddingBottom="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+
+                android:background="@drawable/cursor"
+
+                android:backgroundTint="@color/text_color"/>
 
             <soup.neumorphism.NeumorphCardView
                 style="@style/Widget.Neumorph.CardView"
@@ -138,6 +146,13 @@
 
 
             </soup.neumorphism.NeumorphCardView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+
+                android:background="@drawable/cursor"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/text_color"/>
 
             <TextView
                 android:layout_width="match_parent"

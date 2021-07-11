@@ -1,271 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    android:background="@color/light_background"
-    tools:context=".Fragments.newFeedFragment"
-    android:orientation="vertical">
-    <LinearLayout
-        android:id="@+id/layout_logo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-
-        android:orientation="horizontal">
-
-<!--        <soup.neumorphism.NeumorphCardView-->
-<!--            android:layout_width="30dp"-->
-<!--            android:layout_height="150dp"-->
-
-<!--            android:layout_marginTop="-20dp"-->
-<!--            app:neumorph_shadowColorDark="@color/text_color" />-->
-
-<!--        <soup.neumorphism.NeumorphCardView-->
-<!--            android:layout_width="30dp"-->
-
-<!--            android:layout_height="120dp"-->
-<!--            android:layout_marginTop="-20dp"-->
-<!--            app:neumorph_shadowColorDark="@color/text_color"-->
-
-<!--            />-->
-
-<!--        <soup.neumorphism.NeumorphCardView-->
-<!--            android:layout_width="30dp"-->
-<!--            android:layout_height="90dp"-->
-<!--            android:layout_marginTop="-20dp"-->
-<!--            app:neumorph_shadowColorDark="@color/text_color" />-->
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/img_logo"
-            android:layout_centerHorizontal="true"
-
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Feedback"
-            android:textColor="@color/text_color"
-            android:textSize="40sp"
-            android:transitionName="logo_text" />
-
-    </LinearLayout>
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layout_logo"
-        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"
+
+        android:background="@color/light_background"
         android:orientation="vertical"
-        android:paddingBottom="20dp">
+        tools:context=".Fragments.newFeedFragment">
 
-<!--        <soup.neumorphism.NeumorphCardView-->
-<!--            style="@style/Widget.Neumorph.CardView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="80dp"-->
-<!--            android:layout_marginStart="10dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            app:neumorph_shapeType="pressed">-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="20dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="20dp"-->
-<!--                    android:src="@drawable/rightarrow" />-->
-
-
-<!--                <EditText-->
-<!--                    android:id="@+id/feedbackName"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:background="@drawable/no_backgound"-->
-<!--                    android:hint="Company Name"-->
-<!--                    android:inputType="text"-->
-<!--                    android:paddingStart="20dp"-->
-<!--                    android:paddingEnd="10dp"-->
-<!--                    android:textColor="@color/text_color"-->
-<!--                    android:textCursorDrawable="@drawable/cursor" />-->
-<!--            </LinearLayout>-->
-
-
-<!--        </soup.neumorphism.NeumorphCardView>-->
-
-        <soup.neumorphism.NeumorphCardView
-            style="@style/Widget.Neumorph.CardView"
+        <LinearLayout
+            android:id="@+id/layout_logo"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
 
-            android:layout_marginEnd="10dp"
-            app:neumorph_shapeType="pressed">
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <!--        <soup.neumorphism.NeumorphCardView-->
+            <!--            android:layout_width="30dp"-->
+            <!--            android:layout_height="150dp"-->
+
+            <!--            android:layout_marginTop="-20dp"-->
+            <!--            app:neumorph_shadowColorDark="@color/text_color" />-->
+
+            <!--        <soup.neumorphism.NeumorphCardView-->
+            <!--            android:layout_width="30dp"-->
+
+            <!--            android:layout_height="120dp"-->
+            <!--            android:layout_marginTop="-20dp"-->
+            <!--            app:neumorph_shadowColorDark="@color/text_color"-->
+
+            <!--            />-->
+
+            <!--        <soup.neumorphism.NeumorphCardView-->
+            <!--            android:layout_width="30dp"-->
+            <!--            android:layout_height="90dp"-->
+            <!--            android:layout_marginTop="-20dp"-->
+            <!--            app:neumorph_shadowColorDark="@color/text_color" />-->
+
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_below="@id/img_logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/cormorant_upright_semibold"
+                android:gravity="center_horizontal"
+                android:text="Feedback"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textSize="45sp" />
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/rightarrow" />
+        </LinearLayout>
 
 
-                <EditText
-                    android:id="@+id/memberName"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_logo"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
+
+            <!--        <soup.neumorphism.NeumorphCardView-->
+            <!--            style="@style/Widget.Neumorph.CardView"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="80dp"-->
+            <!--            android:layout_marginStart="10dp"-->
+            <!--            android:layout_marginTop="10dp"-->
+            <!--            android:layout_marginEnd="10dp"-->
+            <!--            app:neumorph_shapeType="pressed">-->
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:orientation="horizontal">-->
+
+            <!--                <ImageView-->
+            <!--                    android:layout_width="20dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="20dp"-->
+            <!--                    android:src="@drawable/rightarrow" />-->
+
+
+            <!--                <EditText-->
+            <!--                    android:id="@+id/feedbackName"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:background="@drawable/no_backgound"-->
+            <!--                    android:hint="Company Name"-->
+            <!--                    android:inputType="text"-->
+            <!--                    android:paddingStart="20dp"-->
+            <!--                    android:paddingEnd="10dp"-->
+            <!--                    android:textColor="@color/text_color"-->
+            <!--                    android:textCursorDrawable="@drawable/cursor" />-->
+            <!--            </LinearLayout>-->
+
+
+            <!--        </soup.neumorphism.NeumorphCardView>-->
+
+            <soup.neumorphism.NeumorphCardView
+                style="@style/Widget.Neumorph.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginStart="10dp"
+
+                android:layout_marginEnd="10dp"
+                app:neumorph_shapeType="pressed">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/no_backgound"
-                    android:hint="Member Name"
-                    android:inputType="text"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="10dp"
-                    android:textColor="@color/text_color"
-                    android:textCursorDrawable="@drawable/cursor" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:src="@drawable/rightarrow" />
 
 
-        </soup.neumorphism.NeumorphCardView>
+                    <EditText
+                        android:id="@+id/memberName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/no_backgound"
+                        android:hint="Member Name"
+                        android:inputType="text"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="10dp"
+                        android:textColor="@color/text_color"
+                        android:textCursorDrawable="@drawable/cursor" />
+                </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:background="@drawable/cursor"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add Questions"
-            android:layout_margin="10dp"
-            android:textSize="15dp"
+            </soup.neumorphism.NeumorphCardView>
 
-            android:gravity="center_horizontal"
-            android:textColor="@color/text_color"
-            android:fontFamily="@font/cairo"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@drawable/cursor" />
 
-        <soup.neumorphism.NeumorphCardView
-            style="@style/Widget.Neumorph.CardView"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginStart="10dp"
-
-            android:layout_marginEnd="10dp"
-            app:neumorph_shapeType="pressed">
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:layout_margin="10dp"
+                android:fontFamily="@font/cairo"
+                android:gravity="center_horizontal"
 
+                android:text="Add Questions"
+                android:textColor="@color/text_color"
+                android:textSize="15dp" />
 
+            <soup.neumorphism.NeumorphCardView
+                style="@style/Widget.Neumorph.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginStart="10dp"
 
+                android:layout_marginEnd="10dp"
+                app:neumorph_shapeType="pressed">
 
-                <EditText
-                    android:id="@+id/question"
-                    android:layout_width="160dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/no_backgound"
-                    android:hint="Question"
-                    android:inputType="text"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="10dp"
-                    android:textColor="@color/text_color"
-                    android:layout_weight="2.5"
-
-                    android:textCursorDrawable="@drawable/cursor" />
-                <ImageView
-                    android:layout_width="20dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:padding="15dp"
-                    android:id="@+id/floating"
-                    android:src="@drawable/add"
-                    android:background="@color/text_color"/>
-            </LinearLayout>
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
 
-        </soup.neumorphism.NeumorphCardView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:background="@drawable/cursor"/>
+                    <EditText
+                        android:id="@+id/question"
+                        android:layout_width="160dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.5"
+                        android:background="@drawable/no_backgound"
+                        android:hint="Question"
+                        android:inputType="text"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="10dp"
+                        android:textColor="@color/text_color"
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/delius"
-            android:gravity="center"
-            android:text="Questionnair"
-            android:textColor="@color/text_color"
-            android:textSize="25dp" />
+                        android:textCursorDrawable="@drawable/cursor" />
 
-        <FrameLayout android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            >
-
-        <ListView
-
-            android:id="@+id/question_list"
-            android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
-
-<!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/floating"-->
-<!--                android:src="@drawable/add"-->
-<!--                android:background="@color/light_background"-->
-<!--                android:backgroundTint="@color/text_color"-->
-<!--                android:layout_gravity="end|bottom"-->
-<!--                android:layout_marginEnd="20dp"-->
-<!--                android:layout_marginBottom="10dp"/>-->
-        </FrameLayout>
+                    <ImageView
+                        android:id="@+id/floating"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:background="@color/text_color"
+                        android:padding="15dp"
+                        android:src="@drawable/add" />
+                </LinearLayout>
 
 
-        <soup.neumorphism.NeumorphButton
-            android:id="@+id/submit"
-            style="@style/Widget.Neumorph.Button"
-            android:layout_width="120dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/gudea"
-            android:text="Submit"
-            android:textColor="@color/text_color"
-            android:textSize="15dp"/>
+            </soup.neumorphism.NeumorphCardView>
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/fab"-->
-<!--            android:padding="20dp"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="bottom|right"-->
-<!--            android:background="@color/light_background"-->
-<!--            android:backgroundTint="@color/light_background"-->
-<!--            android:src="@drawable/check"-->
-<!--            app:maxImageSize="65dp" />-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@drawable/cursor" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/delius"
+                android:gravity="center"
+                android:text="Questionnair"
+                android:textColor="@color/text_color"
+                android:textSize="25dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+
+                    android:id="@+id/question_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:id="@+id/floating"-->
+                <!--                android:src="@drawable/add"-->
+                <!--                android:background="@color/light_background"-->
+                <!--                android:backgroundTint="@color/text_color"-->
+                <!--                android:layout_gravity="end|bottom"-->
+                <!--                android:layout_marginEnd="20dp"-->
+                <!--                android:layout_marginBottom="10dp"/>-->
+            </FrameLayout>
+
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/submit"
+                style="@style/Widget.Neumorph.Button"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/gudea"
+                android:text="Submit"
+                android:textColor="@color/text_color"
+                android:textSize="15dp" />
+
+            <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+            <!--            android:id="@+id/fab"-->
+            <!--            android:padding="20dp"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_gravity="bottom|right"-->
+            <!--            android:background="@color/light_background"-->
+            <!--            android:backgroundTint="@color/light_background"-->
+            <!--            android:src="@drawable/check"-->
+            <!--            app:maxImageSize="65dp" />-->
+
+        </LinearLayout>
+
 
     </LinearLayout>
-
-
-
-</LinearLayout>
 </layout>

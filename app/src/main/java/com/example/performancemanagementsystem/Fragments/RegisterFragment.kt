@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.performancemanagementsystem.R
 import com.example.performancemanagementsystem.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 
 class RegisterFragment : Fragment() {
@@ -96,9 +97,11 @@ class RegisterFragment : Fragment() {
                             .commit()
 
                     } else {
-                        // If sign in fails, display a message to the user.
+
+                        if (task.exception is FirebaseAuthUserCollisionException) {
+                            Toast.makeText(context, "User with this email already exist.", Toast.LENGTH_SHORT).show()}
                         Log.w(ContentValues.TAG, "createUserWithEmail:failure", task.exception)
-                        //Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show()
+
 
                     }
                 }

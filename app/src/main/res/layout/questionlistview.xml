@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/light_background"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/cursor" />
+
+    <TextView
+        android:id="@+id/textlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/delius"
+        android:text="Value"
+        android:textColor="@color/text_color"
+        android:textSize="20dp"/>
 
 
 
-        <TextView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/textlist"
-            android:layout_width="match_parent"
-            android:textSize="20dp"
-    android:text="Value"
-    android:layout_margin="10dp"
-            android:textColor="@color/text_color"
-    android:fontFamily="@font/delius"
-            android:layout_height="wrap_content" >
-        </TextView>
-
-
+</LinearLayout>

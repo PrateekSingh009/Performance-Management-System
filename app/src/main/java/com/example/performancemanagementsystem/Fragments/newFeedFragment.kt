@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.performancemanagementsystem.Adapter.FeedbackListAdapter
+import com.example.performancemanagementsystem.Adapter.QuestionListAdapter
 import com.example.performancemanagementsystem.CompanyInfoModel
 import com.example.performancemanagementsystem.FeedBackListModel
 import com.example.performancemanagementsystem.FeedbackModel
@@ -146,6 +149,27 @@ class newFeedFragment() : Fragment() {
         newFeedBinding.question.setText(empty)
 
 
+        dbref.child(keyValue).addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val feedback = snapshot.getValue(FeedbackModel::class.java)
+                val quelist = feedback!!.questionList
+                newFeedBinding.questionList.apply {
+                    layoutManager = LinearLayoutManager(context)
+                    setHasFixedSize(true)
+                    adapter = QuestionListAdapter(quelist!!)
+                }
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+
 
 
     }
@@ -199,7 +223,11 @@ class newFeedFragment() : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for(snapshot in dataSnapshot.children){
                 val feedList : ArrayList<String> = snapshot.getValue() as ArrayList<String>
-                feedList.add(keyValue)
+                    if(feedList[0] == ""){
+                        feedList[0]=keyValue
+                    }
+                    else
+                        feedList.add(keyValue)
                     Log.i("Key",snapshot.key!!)
                 dbrefFeedbackList.child(code).child(snapshot.key!!).setValue(feedList)}
             }

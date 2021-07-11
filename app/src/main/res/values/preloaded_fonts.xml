@@ -5,8 +5,16 @@
         <item>@font/biryani_semibold</item>
         <item>@font/buenard_bold</item>
         <item>@font/cairo</item>
+        <item>@font/cambo</item>
+        <item>@font/catamaran_semibold</item>
+        <item>@font/cinzel_decorative_bold</item>
+        <item>@font/cormorant_upright_semibold</item>
         <item>@font/delius</item>
         <item>@font/el_messiri</item>
         <item>@font/gudea</item>
+        <item>@font/josefin_slab_bold</item>
+        <item>@font/merriweather_bold</item>
+        <item>@font/poppins_medium</item>
+        <item>@font/ubuntu_medium</item>
     </array>
 </resources>
