@@ -78,8 +78,8 @@ class newFeedFragment() : Fragment() {
         code = "0"
 
 
-        if(generatedcompanyCode==0)
-        {
+//        if(generatedcompanyCode==0)
+//        {
             dbrefCompanyInfo.child(FirebaseAuth.getInstance().uid!!).child("companyCode").get()
                 .addOnSuccessListener {
                     code = it.value.toString()
@@ -87,9 +87,9 @@ class newFeedFragment() : Fragment() {
                 }.addOnFailureListener{
                     Log.e("firebase", "Error getting data", it)
                 }
-        }
-        else
-            code = generatedcompanyCode.toString()
+//        }
+//        else
+//            code = generatedcompanyCode.toString()
 
 
 

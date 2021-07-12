@@ -17,12 +17,12 @@ class QuestionListAdapter(list : ArrayList<String>) : RecyclerView.Adapter<Quest
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionListAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.questionlistview,parent,false)
         return QuestionListAdapter.ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: QuestionListAdapter.ViewHolder, position: Int) {
         holder.txt.text = list[position]
     }
 

@@ -1,15 +1,21 @@
 package com.example.performancemanagementsystem.Adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.performancemanagementsystem.DashScreenActivity
 import com.example.performancemanagementsystem.FeedbackModel
+import com.example.performancemanagementsystem.Fragments.NewOrgFragment
+import com.example.performancemanagementsystem.Fragments.ResponseFragment
 import com.example.performancemanagementsystem.R
 import com.google.firebase.database.*
 
-class FeedbackListAdapter(list : ArrayList<String> ) :  RecyclerView.Adapter<FeedbackListAdapter.ViewHolder>(){
+class FeedbackListAdapter(private val activity: DashScreenActivity,list : ArrayList<String> ) :  RecyclerView.Adapter<FeedbackListAdapter.ViewHolder>(){
 
     private var list : ArrayList<String> = list
     private lateinit var dbrefFeedback : DatabaseReference
@@ -20,6 +26,8 @@ class FeedbackListAdapter(list : ArrayList<String> ) :  RecyclerView.Adapter<Fee
             txt= view.findViewById(R.id.feedname)
         }
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.feedback_list_layout,parent,false)
@@ -54,6 +62,15 @@ class FeedbackListAdapter(list : ArrayList<String> ) :  RecyclerView.Adapter<Fee
 
 
             })
+
+        holder.itemView.setOnClickListener {
+
+            activity.supportFragmentManager.beginTransaction()
+                .replace(R.id.dash_container, ResponseFragment(list[position]))
+                .commit()
+
+            Log.i("Item Clicked Key",position.toString())
+        }
 
 
     }

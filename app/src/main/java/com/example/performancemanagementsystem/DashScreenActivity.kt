@@ -13,8 +13,7 @@ class DashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dash_screen)
 
 
-        val auth = FirebaseAuth.getInstance()
-        Toast.makeText(this,auth.currentUser?.uid,Toast.LENGTH_SHORT).show()
+
 
 
 //        val extras : Bundle = intent.extras!!

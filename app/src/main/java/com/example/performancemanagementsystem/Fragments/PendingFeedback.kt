@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.performancemanagementsystem.Adapter.FeedbackListAdapter
+import com.example.performancemanagementsystem.DashScreenActivity
 import com.example.performancemanagementsystem.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -35,7 +36,7 @@ class PendingFeedback(cmpcode: String) : Fragment() {
 
 
 
-        dbrefFeedbackList.child(cmpcode).addListenerForSingleValueEvent(object :ValueEventListener{
+        dbrefFeedbackList.child(cmpcode).addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snap in snapshot.children)
                 {
@@ -51,7 +52,7 @@ class PendingFeedback(cmpcode: String) : Fragment() {
                         recyclerView.apply {
                             layoutManager = LinearLayoutManager(context)
                             setHasFixedSize(true)
-                            adapter = FeedbackListAdapter(feedarray)
+                            adapter = FeedbackListAdapter(activity as DashScreenActivity, feedarray)
                         }
                     }
                 }

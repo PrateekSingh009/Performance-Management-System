@@ -7,6 +7,7 @@ import android.view.View
 import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import com.example.performancemanagementsystem.CompanyInfoModel
 import com.example.performancemanagementsystem.R
 import com.example.performancemanagementsystem.UserModel
@@ -42,12 +43,14 @@ class DashFragment() : Fragment() {
 
         val dbrefCompanyInfo = FirebaseDatabase.getInstance().getReference("CompanyInfo")
 
+        val auth = FirebaseAuth.getInstance()
+        Toast.makeText(context,auth.currentUser?.uid, Toast.LENGTH_SHORT).show()
 
-        dbrefCompanyInfo.addListenerForSingleValueEvent(
+        dbrefCompanyInfo.addValueEventListener(
             object : ValueEventListener {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if (!snapshot.hasChild(FirebaseAuth.getInstance().uid!!)) {
+                    if (!snapshot.hasChild(FirebaseAuth.getInstance().currentUser!!.uid!!)) {
                         createCard.visibility = INVISIBLE
                     }
                     for(snap in snapshot.children){

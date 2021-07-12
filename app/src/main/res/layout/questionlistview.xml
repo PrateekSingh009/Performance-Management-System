@@ -3,6 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/light_background"
     android:orientation="vertical">
 
@@ -12,15 +13,30 @@
         android:layout_height="2dp"
         android:background="@drawable/cursor" />
 
-    <TextView
-        android:id="@+id/textlist"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:fontFamily="@font/delius"
-        android:text="Value"
-        android:textColor="@color/text_color"
-        android:textSize="20dp"/>
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/q"
+            android:layout_gravity="top"
+
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/textlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/delius"
+            android:text="Value"
+            android:textColor="@color/text_color"
+            android:textSize="20dp"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
 
 
 
