@@ -3,22 +3,209 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_background"
     android:orientation="vertical"
+
     tools:context=".Fragments.ResponseFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/feedbackName"
         android:layout_width="match_parent"
+        android:layout_height="70dp"
+
+        android:background="@drawable/button"
+        android:backgroundTint="@color/text_color"
+        android:fontFamily="@font/cambo"
+
+        android:gravity="center"
+
+        android:text="Fill the Responses"
+        android:textColor="@color/light_background"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/cursor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="Responses" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/cairo"
+            android:text="Name : "
+            android:textColor="@color/text_color"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/RName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/cairo"
+            android:text="Name : "
+            android:textColor="@color/text_color"
+            android:textSize="15dp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/cairo"
+            android:text="Member ID : "
+
+
+            android:textColor="@color/text_color"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/RMemberID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/cairo"
+
+
+            android:text="Member ID : "
+            android:textColor="@color/text_color"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/cairo"
+            android:text="Company Name : "
+            android:textColor="@color/text_color"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/RCmpName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/cairo"
+
+
+            android:text="Company Name : "
+            android:textColor="@color/text_color"
+            android:textSize="15dp" />
+
+
+    </LinearLayout>
+
+
+    <!--    <soup.neumorphism.NeumorphCardView-->
+    <!--        style="@style/Widget.Neumorph.CardView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="80dp"-->
+    <!--        android:layout_marginStart="10dp"-->
+
+    <!--        android:layout_marginEnd="10dp"-->
+    <!--        app:neumorph_shapeType="pressed">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:orientation="horizontal"-->
+    <!--            android:weightSum="3">-->
+
+
+    <!--            <EditText-->
+    <!--                android:id="@+id/question"-->
+    <!--                android:layout_width="160dp"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_weight="2.5"-->
+    <!--                android:background="@drawable/no_backgound"-->
+    <!--                android:hint="Question"-->
+    <!--                android:inputType="text"-->
+    <!--                android:paddingStart="20dp"-->
+    <!--                android:paddingEnd="10dp"-->
+    <!--                android:textColor="@color/text_color"-->
+
+    <!--                android:textCursorDrawable="@drawable/cursor" />-->
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/floating"-->
+    <!--                android:layout_width="20dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_weight="0.5"-->
+    <!--                android:background="@color/text_color"-->
+    <!--                android:padding="15dp"-->
+    <!--                android:src="@drawable/add" />-->
+    <!--        </LinearLayout>-->
+
+
+    <!--    </soup.neumorphism.NeumorphCardView>-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/cursor" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/responseQuesList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+android:layout_marginBottom="65dp"
+        android:backgroundTint="@color/white"
 
         tools:listitem="@layout/responsequeslist" />
+
+    <Button
+        android:id="@+id/submit_response"
+
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-65dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/text_color"
+        android:elevation="30dp"
+        android:fontFamily="@font/cambo"
+
+        android:gravity="center"
+        android:text="Submit Responses"
+        android:textColor="@color/light_background"
+        android:textSize="15dp"
+        tools:ignore="MissingConstraints" />
+
 
 </LinearLayout>

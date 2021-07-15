@@ -28,21 +28,18 @@ class newFeedFragment() : Fragment() {
 
     private lateinit var newFeedBinding: FragmentNewFeedBinding
 
-   private lateinit var code : String
+    private lateinit var code: String
 
 
+    private var arrayList: ArrayList<String> = ArrayList()
 
 
-    private  var arrayList: ArrayList<String> = ArrayList()
+    private var feedb = hashMapOf<String, ArrayList<String>>()
 
-
-
-    private var feedb = hashMapOf<String,ArrayList<String>>()
-
-    private lateinit var member : String
-    private lateinit var dbref : DatabaseReference
-    private lateinit var dbrefCompanyInfo : DatabaseReference
-    private lateinit var dbrefFeedbackList :DatabaseReference
+    private lateinit var member: String
+    private lateinit var dbref: DatabaseReference
+    private lateinit var dbrefCompanyInfo: DatabaseReference
+    private lateinit var dbrefFeedbackList: DatabaseReference
 
     private var keyValue = ""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,20 +77,19 @@ class newFeedFragment() : Fragment() {
 
 //        if(generatedcompanyCode==0)
 //        {
-            dbrefCompanyInfo.child(FirebaseAuth.getInstance().uid!!).child("companyCode").get()
-                .addOnSuccessListener {
-                    code = it.value.toString()
-                    Log.i("firebase", "Got value ${it.value}")
-                }.addOnFailureListener{
-                    Log.e("firebase", "Error getting data", it)
-                }
+        dbrefCompanyInfo.child(FirebaseAuth.getInstance().uid!!).child("companyCode").get()
+            .addOnSuccessListener {
+                code = it.value.toString()
+                Log.i("firebase", "Got value ${it.value}")
+            }.addOnFailureListener {
+                Log.e("firebase", "Error getting data", it)
+            }
 //        }
 //        else
 //            code = generatedcompanyCode.toString()
 
 
-
-       // arrayList = ArrayList()
+        // arrayList = ArrayList()
 
         newFeedBinding.floating.setOnClickListener {
 
@@ -112,17 +108,15 @@ class newFeedFragment() : Fragment() {
 
     private fun addQues() {
 
-        val ques : String = newFeedBinding.question.text.toString()
-        if( ques.isEmpty())
-        {
+        val ques: String = newFeedBinding.question.text.toString()
+        if (ques.isEmpty()) {
             newFeedBinding.question.error = "Field Required"
             return
         }
 
 
 
-        if(arrayList.isEmpty())
-        {
+        if (arrayList.isEmpty()) {
             val key = dbref.push().key
             keyValue = key.toString()
 
@@ -136,20 +130,18 @@ class newFeedFragment() : Fragment() {
                 dbref.child(key).setValue(feedback)
             }
 
-        }
-        else
-        {
+        } else {
             arrayList.add(ques)
             val feedback = FeedbackModel(keyValue, code, "", arrayList)
             dbref.child(keyValue).setValue(feedback)
 
         }
 
-        val empty:String  = ""
+        val empty: String = ""
         newFeedBinding.question.setText(empty)
 
 
-        dbref.child(keyValue).addValueEventListener(object :ValueEventListener{
+        dbref.child(keyValue).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val feedback = snapshot.getValue(FeedbackModel::class.java)
                 val quelist = feedback!!.questionList
@@ -167,9 +159,6 @@ class newFeedFragment() : Fragment() {
             }
 
         })
-
-
-
 
 
     }
@@ -207,8 +196,6 @@ class newFeedFragment() : Fragment() {
 //        Log.i("feedb",feedb.toString())
 
 
-
-
 //        dbfirestore.collection(code).document(FirebaseAuth.getInstance().uid!!).set(feedb).addOnSuccessListener {
 //            Log.i("Document", "Completed")
 //        }
@@ -218,58 +205,73 @@ class newFeedFragment() : Fragment() {
 //
 
 
-
-        dbrefFeedbackList.child(code).addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for(snapshot in dataSnapshot.children){
-                val feedList : ArrayList<String> = snapshot.getValue() as ArrayList<String>
-                    if(feedList[0] == ""){
-                        feedList[0]=keyValue
-                    }
-                    else
-                        feedList.add(keyValue)
-                    Log.i("Key",snapshot.key!!)
-                dbrefFeedbackList.child(code).child(snapshot.key!!).setValue(feedList)}
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-
-        })
-
-
-
-
-
-
         member = newFeedBinding.memberName.text.toString()
-
-        if( member.isEmpty())
-        {
+        if (member.isEmpty()) {
             newFeedBinding.memberName.error = "Field Required"
             return
         }
-        dbref.child(keyValue).child("member").setValue(member)
+
+        var exist = 0
+        dbrefCompanyInfo.child(FirebaseAuth.getInstance().uid!!)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val companyinfo = snapshot.getValue(CompanyInfoModel::class.java)
+                    val arlist = companyinfo!!.memberList
+                    for (i in arlist!!) {
+                        if (i.name == member) {
+                            dbref.child(keyValue).child("member").setValue(member)
+
+                            
+
+                            dbrefFeedbackList.child(code)
+                                .addListenerForSingleValueEvent(object : ValueEventListener {
+                                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                        for (snapshot in dataSnapshot.children) {
+                                            if (i.uid != snapshot.key) {
+                                                val feedList: ArrayList<String> =
+                                                    snapshot.getValue() as ArrayList<String>
+                                                if (feedList[0] == "") {
+                                                    feedList[0] = keyValue
+                                                } else
+                                                    feedList.add(keyValue)
+                                                Log.i("Key", snapshot.key!!)
+                                                dbrefFeedbackList.child(code).child(snapshot.key!!)
+                                                    .setValue(feedList)
+                                            }
+                                        }
+                                    }
+
+                                    override fun onCancelled(error: DatabaseError) {
+                                        TODO("Not yet implemented")
+                                    }
+
+
+                                })
 
 
 
 
 
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.dash_container, DashFragment())
-            .commit()
+                            requireActivity().supportFragmentManager.beginTransaction()
+                                .replace(R.id.dash_container, DashFragment())
+                                .commit()
+                            exist = 1
+                            break
 
+                        }
 
+                    }
+                    if (exist == 0) {
+                        newFeedBinding.memberName.error = "Member doesn't EXIST"
+                    }
 
+                }
 
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
 
     }
-
-
-
-
-
 
 }

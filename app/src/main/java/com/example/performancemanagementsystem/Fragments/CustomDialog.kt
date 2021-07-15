@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.performancemanagementsystem.CompanyInfoModel
 import com.example.performancemanagementsystem.DashScreenActivity
@@ -52,7 +53,7 @@ class CustomDialog(username: String, email: String, uid: String) :DialogFragment
                 val feedlist = ArrayList<String>()
                 feedlist!!.add("")
                 var dbrefFeedbackList = FirebaseDatabase.getInstance().getReference("FeedbackList")
-                dbrefFeedbackList.child(ccode).child(auth.uid!!).setValue(feedlist)
+
                 val dbref = FirebaseDatabase.getInstance().getReference("CompanyInfo")
                 var once = 0
                 dbref.addListenerForSingleValueEvent(object : ValueEventListener{
@@ -68,14 +69,24 @@ class CustomDialog(username: String, email: String, uid: String) :DialogFragment
                                 if(companyInfoModel!!.companyCode.toString()==ccode){
                                     Log.d("equal success",companyInfoModel!!.companyCode.toString())
                                     companyInfoModel!!.memberList!!.add(user)
-                                    if(once==0)
+                                    if(once==0){
                                         dbref.child(companyInfoModel.uid).setValue(companyInfoModel)
+                                        dbrefFeedbackList.child(ccode).child(auth.uid!!).setValue(feedlist)
+                                        val intent = Intent(context, DashScreenActivity::class.java)
+                                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        startActivity(intent)
+                                        activity?.finish()
+
+                                        dialog!!.dismiss()
+                                    }
                                     else
                                         break
 
                                 }
                                 else
                                 {
+                                  //  Toast.makeText(context,"Company with this code doesn't EXIST",Toast.LENGTH_SHORT).show()
+                                      editText.error = "Wrong Code"
                                     Log.d("equal fail","failure")
                                 }
 
@@ -98,13 +109,10 @@ class CustomDialog(username: String, email: String, uid: String) :DialogFragment
                 })
 
 
-                val intent = Intent(context, DashScreenActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                activity?.finish()
 
 
-                dialog!!.dismiss()
+
+
             }
 
 

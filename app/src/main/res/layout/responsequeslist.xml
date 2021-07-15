@@ -8,7 +8,9 @@
     android:orientation="vertical"
     android:elevation="30dp"
     android:layout_marginTop="20dp"
-    android:background="@color/light_background">
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:background="@drawable/dialog">
 
     <TextView
         android:layout_width="match_parent"
@@ -48,6 +50,7 @@
         tools:ignore="MissingConstraints" />
 
     <RadioGroup
+        android:id="@+id/cardRg"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -56,26 +59,26 @@
 
 
         <RadioButton
-
+            android:id="@+id/cardR1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Excellent"
-            android:textColor="@color/text_color"/>
+            android:textColor="@color/text_color" />
         <RadioButton
-
+            android:id="@+id/cardR2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Good"
             android:textColor="@color/text_color"/>
         <RadioButton
-
+            android:id="@+id/cardR3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bad"
             android:textColor="@color/text_color"/>
 
         <RadioButton
-
+            android:id="@+id/cardR4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Worst"
