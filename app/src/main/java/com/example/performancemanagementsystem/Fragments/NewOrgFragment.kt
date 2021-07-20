@@ -100,10 +100,10 @@ class NewOrgFragment(username: String, email: String, uid: String) : Fragment() 
 
             dbref!!.child(auth!!.uid!!).setValue(companyInfoModel)
 
-            val feedlist = ArrayList<String>()
-            feedlist!!.add("")
-            var dbrefFeedbackList = FirebaseDatabase.getInstance().getReference("FeedbackList")
-            dbrefFeedbackList.child(num.toString()).child(auth.uid!!).setValue(feedlist)
+//            val feedlist = ArrayList<String>()
+//            feedlist!!.add("")
+//            var dbrefFeedbackList = FirebaseDatabase.getInstance().getReference("FeedbackList")
+//            dbrefFeedbackList.child(num.toString()).child(auth.uid!!).setValue(feedlist)
 
             val intent = Intent(context, DashScreenActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)

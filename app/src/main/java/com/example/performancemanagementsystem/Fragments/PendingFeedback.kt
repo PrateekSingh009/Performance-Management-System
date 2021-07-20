@@ -1,18 +1,19 @@
 package com.example.performancemanagementsystem.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.performancemanagementsystem.Adapter.FeedbackListAdapter
-import com.example.performancemanagementsystem.DashScreenActivity
 import com.example.performancemanagementsystem.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_pending_feedback.*
 
 
 class PendingFeedback(cmpcode: String) : Fragment() {
@@ -32,7 +33,17 @@ class PendingFeedback(cmpcode: String) : Fragment() {
 
         val view =  inflater.inflate(R.layout.fragment_pending_feedback, container, false)
         dbrefFeedbackList = FirebaseDatabase.getInstance().getReference("FeedbackList")
+
+        val btn : ImageView = view.findViewById(R.id.backbtn)
         val recyclerView : RecyclerView = view.findViewById(R.id.feedbackList)
+
+
+        btn.setOnClickListener {
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.dash_container, DashFragment())
+                .commit()
+        }
 
 
 
@@ -52,7 +63,7 @@ class PendingFeedback(cmpcode: String) : Fragment() {
                         recyclerView.apply {
                             layoutManager = LinearLayoutManager(context)
                             setHasFixedSize(true)
-                            adapter = FeedbackListAdapter(activity as DashScreenActivity, feedarray)
+                            adapter = FeedbackListAdapter(activity , feedarray)
                         }
                     }
                 }

@@ -108,6 +108,11 @@ class newFeedFragment() : Fragment() {
 
     private fun addQues() {
 
+
+
+        
+
+
         val ques: String = newFeedBinding.question.text.toString()
         if (ques.isEmpty()) {
             newFeedBinding.question.error = "Field Required"
@@ -217,28 +222,37 @@ class newFeedFragment() : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val companyinfo = snapshot.getValue(CompanyInfoModel::class.java)
                     val arlist = companyinfo!!.memberList
-                    for (i in arlist!!) {
-                        if (i.name == member) {
-                            dbref.child(keyValue).child("member").setValue(member)
-
-                            
-
-                            dbrefFeedbackList.child(code)
+                    Log.i("Employee List",arlist.toString())
+                    for(i in arlist!!){
+                        if(i.name != member){
+                            dbrefFeedbackList.child(code).child(i.uid)
                                 .addListenerForSingleValueEvent(object : ValueEventListener {
+
                                     override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                        for (snapshot in dataSnapshot.children) {
-                                            if (i.uid != snapshot.key) {
-                                                val feedList: ArrayList<String> =
-                                                    snapshot.getValue() as ArrayList<String>
-                                                if (feedList[0] == "") {
-                                                    feedList[0] = keyValue
-                                                } else
+                                        if(dataSnapshot.exists()) {
+
+
+
+                                                    val feedList = dataSnapshot.getValue() as ArrayList<String>
+
                                                     feedList.add(keyValue)
-                                                Log.i("Key", snapshot.key!!)
-                                                dbrefFeedbackList.child(code).child(snapshot.key!!)
-                                                    .setValue(feedList)
-                                            }
+                                                    Log.i("Key", snapshot.key!!)
+                                                    dbrefFeedbackList.child(code)
+                                                        .child(dataSnapshot.key!!)
+                                                        .setValue(feedList)
+
+
                                         }
+                                        else
+                                        {
+                                            val feedList: ArrayList<String> =ArrayList()
+                                            feedList.add(keyValue)
+                                            dbrefFeedbackList.child(code)
+                                                .child(dataSnapshot.key!!)
+                                                .setValue(feedList)
+                                        }
+
+
                                     }
 
                                     override fun onCancelled(error: DatabaseError) {
@@ -247,10 +261,14 @@ class newFeedFragment() : Fragment() {
 
 
                                 })
+                        }
 
 
+                    }
+                    for (i in arlist!!) {
+                        if (i.name == member) {
 
-
+                            dbref.child(keyValue).child("member").setValue(member)
 
                             requireActivity().supportFragmentManager.beginTransaction()
                                 .replace(R.id.dash_container, DashFragment())
@@ -260,6 +278,7 @@ class newFeedFragment() : Fragment() {
 
                         }
 
+
                     }
                     if (exist == 0) {
                         newFeedBinding.memberName.error = "Member doesn't EXIST"
@@ -268,7 +287,7 @@ class newFeedFragment() : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
+
                 }
             })
 

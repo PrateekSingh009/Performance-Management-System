@@ -5,17 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.performancemanagementsystem.DashScreenActivity
 import com.example.performancemanagementsystem.FeedbackModel
-import com.example.performancemanagementsystem.Fragments.NewOrgFragment
 import com.example.performancemanagementsystem.Fragments.ResponseFragment
 import com.example.performancemanagementsystem.R
 import com.google.firebase.database.*
 
-class FeedbackListAdapter(private val activity: DashScreenActivity,list : ArrayList<String> ) :  RecyclerView.Adapter<FeedbackListAdapter.ViewHolder>(){
+class FeedbackListAdapter(private val activity: FragmentActivity?, list: ArrayList<String> ) :  RecyclerView.Adapter<FeedbackListAdapter.ViewHolder>(){
 
     private var list : ArrayList<String> = list
     private lateinit var dbrefFeedback : DatabaseReference
@@ -65,7 +62,7 @@ class FeedbackListAdapter(private val activity: DashScreenActivity,list : ArrayL
 
         holder.itemView.setOnClickListener {
 
-            activity.supportFragmentManager.beginTransaction()
+            activity!!.supportFragmentManager.beginTransaction()
                 .replace(R.id.dash_container, ResponseFragment(list[position]))
                 .commit()
 

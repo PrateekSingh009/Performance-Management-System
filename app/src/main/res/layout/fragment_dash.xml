@@ -186,11 +186,11 @@ android:layout_gravity="center"
                     android:layout_gravity="center"/>
 
                 <TextView
-                    android:layout_width="112dp"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/delius"
-                    android:text="Perfoamnce Status"
+                    android:text="Performance Status"
                     android:textAlignment="center"
                     android:textColor="@color/text_color"
                     android:textSize="15dp" />

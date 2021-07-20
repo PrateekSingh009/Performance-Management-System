@@ -1,5 +1,6 @@
 package com.example.performancemanagementsystem.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,9 +9,7 @@ import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import com.example.performancemanagementsystem.CompanyInfoModel
-import com.example.performancemanagementsystem.R
-import com.example.performancemanagementsystem.UserModel
+import com.example.performancemanagementsystem.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -36,6 +35,7 @@ class DashFragment() : Fragment() {
 
         val createCard : soup.neumorphism.NeumorphCardView = view.findViewById(R.id.createFeed)
         val pendingCard :soup.neumorphism.NeumorphCardView = view.findViewById(R.id.pendingFeed)
+        val statusCard :soup.neumorphism.NeumorphCardView = view.findViewById(R.id.statusFeed)
         val cmpname :TextView = view.findViewById(R.id.nameComp)
         val username :TextView = view.findViewById(R.id.Username)
         val emailval :TextView = view.findViewById(R.id.email)
@@ -91,6 +91,17 @@ class DashFragment() : Fragment() {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.dash_container, PendingFeedback(cmpcode))
                 .commit()
+        }
+
+        statusCard.setOnClickListener {
+
+            val intent = Intent(context, StatusActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            activity?.finish()
+
+
+
         }
 
 

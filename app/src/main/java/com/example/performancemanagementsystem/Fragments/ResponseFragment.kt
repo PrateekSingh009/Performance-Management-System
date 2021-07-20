@@ -27,12 +27,12 @@ class ResponseFragment(private val feedId: String) : Fragment() {
     private lateinit var dbrefFeedback: DatabaseReference
     private lateinit var dbrefCompanyInfo: DatabaseReference
     private lateinit var answers: Array<String>
-    private lateinit var dbrefAnswers : DatabaseReference
-    private lateinit var dbrefFeedbackList : DatabaseReference
-    private lateinit var nametxt : TextView
-    private lateinit var Idtxt :TextView
-    private lateinit var cmpnametxt :TextView
-    private lateinit var cmpcode : String
+    private lateinit var dbrefAnswers: DatabaseReference
+    private lateinit var dbrefFeedbackList: DatabaseReference
+    private lateinit var nametxt: TextView
+    private lateinit var Idtxt: TextView
+    private lateinit var cmpnametxt: TextView
+    private lateinit var cmpcode: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +55,7 @@ class ResponseFragment(private val feedId: String) : Fragment() {
         Idtxt = view.findViewById(R.id.RMemberID)
         cmpnametxt = view.findViewById(R.id.RCmpName)
         val btn: Button = view.findViewById(R.id.submit_response)
+        var quessize = 0
 
         dbrefFeedback.child(feedId).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -69,10 +70,10 @@ class ResponseFragment(private val feedId: String) : Fragment() {
                             if (snapshot.exists()) {
                                 for (snap in snapshot.children) {
                                     val cmpModel = snap.getValue(CompanyInfoModel::class.java)
-                                    if (cmpModel!!.companyCode == feedModel.companyCode){
+                                    if (cmpModel!!.companyCode == feedModel.companyCode) {
                                         cmpnametxt.text = cmpModel.companyName
-                                        for(i in cmpModel.memberList!!){
-                                            if(i.name == feedModel.member)
+                                        for (i in cmpModel.memberList!!) {
+                                            if (i.name == feedModel.member)
                                                 Idtxt.text = i.uid
                                         }
                                     }
@@ -92,6 +93,7 @@ class ResponseFragment(private val feedId: String) : Fragment() {
 
                     })
                     val sizze = quesList!!.size
+                    quessize =sizze
                     Log.i("Queslist Size", sizze.toString())
                     answers = Array(sizze) { "" }
                     resRecyclerView.apply {
@@ -113,10 +115,25 @@ class ResponseFragment(private val feedId: String) : Fragment() {
         btn.setOnClickListener {
             Log.i("FinalAnswers", answers.contentToString())
 
-            val answersAsList : List<String> = answers.toList()
+            val answersAsList: List<String> = answers.toList()
 
-            val map = hashMapOf<String,List<String>>()
-            map.put(FirebaseAuth.getInstance().currentUser!!.uid , answersAsList)
+            Log.i("Queslist Size",quessize.toString())
+            Log.i("Answerlist Size",answersAsList.size.toString())
+
+
+            val checklist :ArrayList<String> = ArrayList(answersAsList)
+            checklist.remove("")
+            Log.i("Checklist Size",checklist.size.toString())
+            if(checklist.size != answersAsList.size)
+            {
+                Log.i("Form","Form not Completed")
+                Toast.makeText(context,"Complete the form",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
+            val map = hashMapOf<String, List<String>>()
+            map.put(FirebaseAuth.getInstance().currentUser!!.uid, answersAsList)
 
 //            val answerlist:ArrayList<List<String>> = ArrayList()
 //            answerlist.add(answersAsList)
@@ -125,21 +142,19 @@ class ResponseFragment(private val feedId: String) : Fragment() {
 //
 //            dbrefAnswers.child(feedId).setValue(resModel)
 
-            dbrefAnswers.child(feedId).addListenerForSingleValueEvent(object : ValueEventListener{
+            dbrefAnswers.child(feedId).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.exists()){
-                        val answersnap :AnswersModel = snapshot.getValue(AnswersModel::class.java)!!
-                        val tempmap :HashMap<String,List<String>> = answersnap.reponses
-                        tempmap.put(FirebaseAuth.getInstance().currentUser!!.uid , answersAsList)
-                        val resModel : AnswersModel = AnswersModel(Idtxt.text.toString(),tempmap)
+                    if (snapshot.exists()) {
+                        val answersnap: AnswersModel = snapshot.getValue(AnswersModel::class.java)!!
+                        val tempmap: HashMap<String, List<String>> = answersnap.reponses
+                        tempmap.put(FirebaseAuth.getInstance().currentUser!!.uid, answersAsList)
+                        val resModel: AnswersModel = AnswersModel(Idtxt.text.toString(), tempmap)
 
                         dbrefAnswers.child(feedId).setValue(resModel)
 
 
-                    }
-                    else
-                    {
-                        val resModel : AnswersModel = AnswersModel(Idtxt.text.toString(),map)
+                    } else {
+                        val resModel: AnswersModel = AnswersModel(Idtxt.text.toString(), map)
 
                         dbrefAnswers.child(feedId).setValue(resModel)
 
@@ -156,42 +171,42 @@ class ResponseFragment(private val feedId: String) : Fragment() {
 
 
 
-            Log.i("Company Code ",cmpcode)
+            Log.i("Company Code ", cmpcode)
 
-            dbrefFeedbackList.child(cmpcode).addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for(snap in snapshot.children){
+            dbrefFeedbackList.child(cmpcode)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (snap in snapshot.children) {
 
-                        if(snap.key == FirebaseAuth.getInstance().currentUser!!.uid) {
+                            if (snap.key == FirebaseAuth.getInstance().currentUser!!.uid) {
 
-                            val feedlist : ArrayList<String> = snap.getValue() as ArrayList<String>
-                            Log.i("FeedLsit",feedlist.toString())
+                                val feedlist: ArrayList<String> =
+                                    snap.getValue() as ArrayList<String>
+                                Log.i("FeedList", feedlist.toString())
 
 
-                            feedlist.remove(feedId)
+                                feedlist.remove(feedId)
 
-                            if(feedlist.isNullOrEmpty())
-                                feedlist.add("")
-                            Log.i("FeedLsitAfter removing",feedlist.toString())
-                            dbrefFeedbackList.child(cmpcode).child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(feedlist)
+//                            if(feedlist.isNullOrEmpty())
+//                                feedlist.add("")
+                                Log.i("FeedListAfter removing", feedlist.toString())
+                                dbrefFeedbackList.child(cmpcode)
+                                    .child(FirebaseAuth.getInstance().currentUser!!.uid)
+                                    .setValue(feedlist)
 
+                                requireActivity().supportFragmentManager.beginTransaction()
+                                    .replace(R.id.dash_container, PendingFeedback(cmpcode))
+                                    .commit()
+
+                            }
                         }
+
                     }
 
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-            })
-
-
-
-
-//            requireActivity().supportFragmentManager.beginTransaction()
-//                .replace(R.id.dash_container, PendingFeedback(cmpcode))
-//                .commit()
-
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+                })
 
 
         }

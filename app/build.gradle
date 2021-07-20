@@ -40,7 +40,9 @@ android {
         enabled=true
     }
 }
-
+repositories {
+    maven { url 'https://jitpack.io' }
+}
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -59,6 +61,7 @@ dependencies {
     implementation 'com.github.fornewid:neumorphism:0.3.0'
     implementation platform('com.google.firebase:firebase-bom:28.2.0')
     implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
 
 }

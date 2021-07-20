@@ -19,7 +19,7 @@
         android:fontFamily="@font/cambo"
 
         android:gravity="center"
-
+        android:elevation="30dp"
         android:text="Fill the Responses"
         android:textColor="@color/light_background"
         android:textSize="30dp" />
@@ -189,6 +189,11 @@ android:layout_marginBottom="65dp"
 
         tools:listitem="@layout/responsequeslist" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-65dp">
+
     <Button
         android:id="@+id/submit_response"
 
@@ -206,6 +211,7 @@ android:layout_marginBottom="65dp"
         android:textColor="@color/light_background"
         android:textSize="15dp"
         tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>

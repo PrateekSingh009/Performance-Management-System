@@ -50,8 +50,8 @@ class CustomDialog(username: String, email: String, uid: String) :DialogFragment
                 val ccode = editText.text.toString()
                 Log.d("CompanyCode",ccode)
 
-                val feedlist = ArrayList<String>()
-                feedlist!!.add("")
+//                val feedlist = ArrayList<String>()
+//                feedlist!!.add("")
                 var dbrefFeedbackList = FirebaseDatabase.getInstance().getReference("FeedbackList")
 
                 val dbref = FirebaseDatabase.getInstance().getReference("CompanyInfo")
@@ -71,7 +71,7 @@ class CustomDialog(username: String, email: String, uid: String) :DialogFragment
                                     companyInfoModel!!.memberList!!.add(user)
                                     if(once==0){
                                         dbref.child(companyInfoModel.uid).setValue(companyInfoModel)
-                                        dbrefFeedbackList.child(ccode).child(auth.uid!!).setValue(feedlist)
+                                        //dbrefFeedbackList.child(ccode).child(auth.uid!!).setValue(feedlist)
                                         val intent = Intent(context, DashScreenActivity::class.java)
                                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                                         startActivity(intent)

@@ -41,14 +41,14 @@ class ResponseListAdapter(list : ArrayList<String>,private var answers : Array<S
                     R.id.cardR1 -> {
                         Log.i("Pressed 1",holder.radiobtn1.text.toString())
                     }
-                    R.id.cardR1 -> {
-                        Log.i("Pressed 2",holder.radiobtn1.text.toString())
+                    R.id.cardR2 -> {
+                        Log.i("Pressed 2",holder.radiobtn2.text.toString())
                     }
-                    R.id.cardR1 -> {
-                        Log.i("Pressed 3",holder.radiobtn1.text.toString())
+                    R.id.cardR3 -> {
+                        Log.i("Pressed 3",holder.radiobtn3.text.toString())
                     }
-                    R.id.cardR1 -> {
-                        Log.i("Pressed 4",holder.radiobtn1.text.toString())
+                    R.id.cardR4 -> {
+                        Log.i("Pressed 4",holder.radiobtn4.text.toString())
                     }
 
                 }
