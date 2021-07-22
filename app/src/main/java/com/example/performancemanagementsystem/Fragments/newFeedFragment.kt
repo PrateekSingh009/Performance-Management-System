@@ -6,14 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.performancemanagementsystem.*
 import com.example.performancemanagementsystem.Adapter.FeedbackListAdapter
 import com.example.performancemanagementsystem.Adapter.QuestionListAdapter
-import com.example.performancemanagementsystem.CompanyInfoModel
-import com.example.performancemanagementsystem.FeedBackListModel
-import com.example.performancemanagementsystem.FeedbackModel
 import com.example.performancemanagementsystem.Fragments.NewOrgFragment.Companion.generatedcompanyCode
 import com.example.performancemanagementsystem.R
 import com.example.performancemanagementsystem.databinding.FragmentNewFeedBinding
@@ -109,61 +108,125 @@ class newFeedFragment() : Fragment() {
     private fun addQues() {
 
 
-
-        
-
-
-        val ques: String = newFeedBinding.question.text.toString()
-        if (ques.isEmpty()) {
-            newFeedBinding.question.error = "Field Required"
+        member = newFeedBinding.memberName.text.toString()
+        if (member.isEmpty()) {
+            newFeedBinding.memberName.error = "Field Required"
             return
         }
+        var toadd = 0
+       var exi =0
+        //Feedback Already Exist
+         dbref.addListenerForSingleValueEvent(object : ValueEventListener{
+             override fun onDataChange(snapshot: DataSnapshot) {
+                 if(snapshot.exists()){
+                     for(snap in snapshot.children)
+                     {
+                         val feed = snap.getValue(FeedbackModel::class.java)
+
+                         if(feed!!.member == member){
+                             Toast.makeText(context,"Feedback Already Exist",Toast.LENGTH_SHORT).show()
+                             newFeedBinding.memberName.error = "Active Feedback Already Exist"
+                             toadd = 1
+                             return }
+                     }
+                     //Member Exist or not
+                     if(toadd == 0){
+                         dbrefCompanyInfo.child(FirebaseAuth.getInstance().currentUser!!.uid!!)
+                             .addListenerForSingleValueEvent(object : ValueEventListener {
+                                 override fun onDataChange(snapshot: DataSnapshot) {
+                                     if(snapshot.exists()){
+                                         val companyInfoModel = snapshot.getValue(CompanyInfoModel::class.java)
+                                         val memberlist: ArrayList<UserModel> = companyInfoModel!!.memberList!!
+
+                                         Log.i("Member",member)
+                                         for(i in memberlist){
+                                             Log.i("i name",i.name)
+                                             if(i.name == member){
+                                                 exi = 1
+
+                                             }
+                                         }
+
+                                         if(exi == 1) {
+
+                                             val ques: String = newFeedBinding.question.text.toString()
+                                             if (ques.isEmpty()) {
+                                                 newFeedBinding.question.error = "Field Required"
+                                                 return
+                                             }
 
 
 
-        if (arrayList.isEmpty()) {
-            val key = dbref.push().key
-            keyValue = key.toString()
+                                             if (arrayList.isEmpty()) {
+                                                 val key = dbref.push().key
+                                                 keyValue = key.toString()
 
 
 
-            arrayList.add(ques)
-            if (key != null) {
+                                                 arrayList.add(ques)
+                                                 if (key != null) {
 
 
-                val feedback = FeedbackModel(key!!, code, "", arrayList)
-                dbref.child(key).setValue(feedback)
-            }
+                                                     val feedback = FeedbackModel(key!!, code, "", arrayList)
+                                                     dbref.child(key).setValue(feedback)
+                                                 }
 
-        } else {
-            arrayList.add(ques)
-            val feedback = FeedbackModel(keyValue, code, "", arrayList)
-            dbref.child(keyValue).setValue(feedback)
+                                             } else {
+                                                 arrayList.add(ques)
+                                                 val feedback = FeedbackModel(keyValue, code, "", arrayList)
+                                                 dbref.child(keyValue).setValue(feedback)
 
-        }
+                                             }
 
-        val empty: String = ""
-        newFeedBinding.question.setText(empty)
-
-
-        dbref.child(keyValue).addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val feedback = snapshot.getValue(FeedbackModel::class.java)
-                val quelist = feedback!!.questionList
-                newFeedBinding.questionList.apply {
-                    layoutManager = LinearLayoutManager(context)
-                    setHasFixedSize(true)
-                    adapter = QuestionListAdapter(quelist!!)
-                }
+                                             val empty: String = ""
+                                             newFeedBinding.question.setText(empty)
 
 
-            }
+                                             dbref.child(keyValue).addValueEventListener(object : ValueEventListener {
+                                                 override fun onDataChange(snapshot: DataSnapshot) {
+                                                     val feedback = snapshot.getValue(FeedbackModel::class.java)
+                                                     val quelist = feedback!!.questionList
+                                                     newFeedBinding.questionList.apply {
+                                                         layoutManager = LinearLayoutManager(context)
+                                                         setHasFixedSize(true)
+                                                         adapter = QuestionListAdapter(quelist!!)
+                                                     }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
 
-        })
+                                                 }
+
+                                                 override fun onCancelled(error: DatabaseError) {
+                                                     TODO("Not yet implemented")
+                                                 }
+
+                                             })
+
+                                         }
+                                         else{
+                                             newFeedBinding.memberName.error = "Member doesn't EXIST"
+                                             return}
+                                     }
+                                 }
+
+                                 override fun onCancelled(error: DatabaseError) {
+                                     TODO("Not yet implemented")
+                                 }
+
+                             })
+
+
+                     }
+
+
+                 }
+             }
+
+             override fun onCancelled(error: DatabaseError) {
+                 TODO("Not yet implemented")
+             }
+
+         })
+
 
 
     }

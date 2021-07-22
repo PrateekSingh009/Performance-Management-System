@@ -6,29 +6,35 @@
     android:background="@color/light_background"
     tools:context=".Fragments.FirstFragment">
 
-    <ImageView
-        android:id="@+id/img_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo"
-        android:layout_centerInParent="true"
-        android:transitionName="logo"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LUNA"
-        android:textSize="45sp"
-        android:textColor="@color/text_color"
-        android:fontFamily="sans-serif-light"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/img_logo"
-        android:transitionName="logo_text"/>
-    <ImageView
-        android:id="@+id/img_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/background_bottom"
-        android:layout_alignParentBottom="true"
-        android:transitionName="img_tree"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/img_logo"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/logo"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:transitionName="logo"/>-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="LUNA"-->
+<!--        android:textSize="45sp"-->
+<!--        android:textColor="@color/text_color"-->
+<!--        android:fontFamily="sans-serif-light"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_below="@id/img_logo"-->
+<!--        android:transitionName="logo_text"/>-->
+<!--    <ImageView-->
+<!--        android:id="@+id/img_bottom"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/background_bottom"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:transitionName="img_tree"/>-->
 
+
+    <soup.neumorphism.NeumorphFloatingActionButton
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:padding="40dp"
+        android:src="@drawable/rightarrow" />
 </RelativeLayout>

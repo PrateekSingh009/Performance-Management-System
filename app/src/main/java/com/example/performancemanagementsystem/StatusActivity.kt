@@ -21,6 +21,10 @@ class StatusActivity : AppCompatActivity() {
 
         dbrefGraphData = FirebaseDatabase.getInstance().getReference("GraphData")
 
+
+        val extras : Bundle = intent.extras!!
+       val username : String = extras.get("Name").toString()
+
         val dbrefAnswer = FirebaseDatabase.getInstance().getReference("Answers")
         Log.i("Uid Current",FirebaseAuth.getInstance().currentUser!!.uid)
         dbrefAnswer.addListenerForSingleValueEvent(object : ValueEventListener{
@@ -102,7 +106,7 @@ class StatusActivity : AppCompatActivity() {
 
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.statusContainer, StatusFragment())
+            .add(R.id.statusContainer, StatusFragment(username))
             .commit()
 
 
