@@ -1,18 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_background"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <FrameLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+android:paddingBottom="20dp"
+    >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:background="@drawable/cursor"
+            android:elevation="30dp"
+            android:backgroundTint="@color/light_background">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/no_backgound"
+                android:fontFamily="@font/cinzel_decorative_bold"
+
+                android:gravity="center"
+                android:text="Performate"
+
+
+                android:textColor="@color/text_color"
+                android:textSize="35dp" />
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+        <TextView
+            android:id="@+id/blue"
+            android:layout_width="match_parent"
+            android:layout_height="390dp"
+            android:background="@drawable/button"
+            android:backgroundTint="@color/text_color"
+            android:layout_centerHorizontal="true"
+            tools:ignore="MissingConstraints"
+
+            />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/headbtn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="355dp"
+            android:backgroundTint="@color/light_background"
+
+            app:fabCustomSize="80dp"
+            android:paddingBottom="20dp"
+
+            android:src="@drawable/rightarrow"
+            />
+</FrameLayout>
+
+
+
+
+
+<!--    <soup.neumorphism.NeumorphFloatingActionButton-->
+<!--        -->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginBottom="38dp"-->
+<!--        android:padding="40dp"-->
+<!--        android:src="@drawable/rightarrow"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+</RelativeLayout>

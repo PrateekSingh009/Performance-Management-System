@@ -3,13 +3,14 @@ package com.example.performancemanagementsystem.Fragments
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.performancemanagementsystem.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -32,7 +33,7 @@ class DashFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_dash,container,false)
+        val view = inflater.inflate(R.layout.fragment_dash, container, false)
 
         val createCard : soup.neumorphism.NeumorphCardView = view.findViewById(R.id.createFeed)
         val pendingCard :soup.neumorphism.NeumorphCardView = view.findViewById(R.id.pendingFeed)
@@ -40,12 +41,15 @@ class DashFragment() : Fragment() {
         val cmpname :TextView = view.findViewById(R.id.nameComp)
         val username :TextView = view.findViewById(R.id.Username)
         val emailval :TextView = view.findViewById(R.id.email)
+        val logout : Button = view.findViewById(R.id.logoutBtn)
         var cmpcode : String = ""
 
         val dbrefCompanyInfo = FirebaseDatabase.getInstance().getReference("CompanyInfo")
 
         val auth = FirebaseAuth.getInstance()
-        Toast.makeText(context,auth.currentUser?.uid, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, auth.currentUser?.uid, Toast.LENGTH_SHORT).show()
+
+
 
         dbrefCompanyInfo.addValueEventListener(
             object : ValueEventListener {
@@ -54,11 +58,11 @@ class DashFragment() : Fragment() {
                     if (!snapshot.hasChild(FirebaseAuth.getInstance().currentUser!!.uid!!)) {
                         createCard.visibility = INVISIBLE
                     }
-                    for(snap in snapshot.children){
+                    for (snap in snapshot.children) {
                         val companyInfoModel = snap.getValue(CompanyInfoModel::class.java)
-                        val arrayList:ArrayList<UserModel> = companyInfoModel!!.memberList!!
-                        for(i in arrayList){
-                            if(i.uid == FirebaseAuth.getInstance().uid){
+                        val arrayList: ArrayList<UserModel> = companyInfoModel!!.memberList!!
+                        for (i in arrayList) {
+                            if (i.uid == FirebaseAuth.getInstance().uid) {
                                 cmpname.text = companyInfoModel.companyName
                                 cmpcode = companyInfoModel.companyCode
                                 emailval.text = i.email
@@ -68,13 +72,12 @@ class DashFragment() : Fragment() {
                         }
 
 
-
                     }
 
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Log.i("DatabaseError",error.message)
+                    Log.i("DatabaseError", error.message)
                 }
             })
 
@@ -98,11 +101,26 @@ class DashFragment() : Fragment() {
 
             val intent = Intent(context, StatusActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.putExtra("Name",username.text)
+            intent.putExtra("Name", username.text)
             startActivity(intent)
             activity?.finish()
 
 
+
+        }
+
+        logout.setOnClickListener {
+
+
+
+            if(FirebaseAuth.getInstance().currentUser != null) {
+                FirebaseAuth.getInstance()
+                    .signOut()
+
+                val intent = Intent(activity, AuthActivity::class.java)
+                startActivity(intent)
+
+            }
 
         }
 
