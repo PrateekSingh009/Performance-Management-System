@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/light_background">
+    <soup.neumorphism.NeumorphCardView
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+
+        android:layout_marginEnd="10dp"
+        app:neumorph_shapeType="basin"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/adjust" />
+
+
+            <TextView
+                android:id="@+id/employeename"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/no_backgound"
+                android:text="Employee Name"
+                android:textSize="18dp"
+                android:textColor="@color/text_color"
+                android:gravity="center_vertical"
+
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp"
+                />
+        </LinearLayout>
+
+
+    </soup.neumorphism.NeumorphCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

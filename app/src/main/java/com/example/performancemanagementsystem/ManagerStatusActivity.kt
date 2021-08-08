@@ -1,32 +1,28 @@
 package com.example.performancemanagementsystem
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import com.example.performancemanagementsystem.Fragments.DashFragment
+import com.example.performancemanagementsystem.Fragments.MangerStatusFragment
 import com.example.performancemanagementsystem.Fragments.StatusFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import java.util.stream.IntStream.range
 
-class StatusActivity : AppCompatActivity() {
+class ManagerStatusActivity : AppCompatActivity() {
 
     private lateinit var dbrefGraphData : DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_status)
-
-        dbrefGraphData = FirebaseDatabase.getInstance().getReference("GraphData")
+        setContentView(R.layout.activity_manager_status)
 
         val extras : Bundle = intent.extras!!
         val username : String = extras.get("Name").toString()
-
+        val uid : String = extras.get("ID").toString()
+        dbrefGraphData = FirebaseDatabase.getInstance().getReference("GraphData")
         val dbrefAnswer = FirebaseDatabase.getInstance().getReference("Answers")
-        Log.i("Uid Current",FirebaseAuth.getInstance().currentUser!!.uid)
-        dbrefAnswer.addListenerForSingleValueEvent(object : ValueEventListener{
+        Log.i("Uid Current", FirebaseAuth.getInstance().currentUser!!.uid)
+        dbrefAnswer.addListenerForSingleValueEvent(object : ValueEventListener {
 
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -34,11 +30,11 @@ class StatusActivity : AppCompatActivity() {
                 {
                     for(snap in snapshot.children)
                     {
-                       val model = snap.getValue(AnswersModel::class.java)
+                        val model = snap.getValue(AnswersModel::class.java)
                         Log.i("Uid Current",model!!.memberId)
-                        if(model!!.memberId == FirebaseAuth.getInstance().currentUser!!.uid)
+                        if(model!!.memberId == uid)
                         {
-                            Log.i("Uid Current",FirebaseAuth.getInstance().currentUser!!.uid)
+                            Log.i("Uid Current", uid)
                             val avglist : Array<Int> = Array(100){0}
                             val noOfMembers = model.reponses.size
                             for(i in model.reponses)
@@ -72,26 +68,28 @@ class StatusActivity : AppCompatActivity() {
                             {
                                 if(avglist[x]!=0){
                                     val d = (avglist[x].toDouble())/noOfMembers
-                                arrayList.add(d)
+                                    arrayList.add(d)
                                 }
                             }
                             Log.i("Avg lsit valies",arrayList.toString())
-                            Toast.makeText(this@StatusActivity,arrayList.toString(),Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@ManagerStatusActivity,arrayList.toString(), Toast.LENGTH_SHORT).show()
 
 
 
 
 
-
+//                            val map : HashMap<String,ArrayList<Double>> = hashMapOf()
+//                            map.put(uid,arrayList)
+//                            dbrefGraphData.setValue(map)
 
                             dbrefGraphData.addListenerForSingleValueEvent(object : ValueEventListener{
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     if(snapshot.exists()){
-                                        dbrefGraphData.child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(arrayList)
+                                        dbrefGraphData.child(uid).setValue(arrayList)
                                     }
                                     else{
                                         val map : HashMap<String,ArrayList<Double>> = hashMapOf()
-                                        map.put(FirebaseAuth.getInstance().currentUser!!.uid,arrayList)
+                                        map.put(uid,arrayList)
                                         dbrefGraphData.setValue(map)
 
                                     }
@@ -107,7 +105,7 @@ class StatusActivity : AppCompatActivity() {
 
 
 
-                            break
+                                        break
                         }
                     }
 
@@ -125,9 +123,8 @@ class StatusActivity : AppCompatActivity() {
 
         })
 
-
         supportFragmentManager.beginTransaction()
-            .add(R.id.statusContainer, StatusFragment(username))
+            .add(R.id.managerstatusContainer, MangerStatusFragment(username,uid))
             .commit()
 
 

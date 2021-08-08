@@ -41,13 +41,23 @@
             <!--            android:layout_marginTop="-20dp"-->
             <!--            app:neumorph_shadowColorDark="@color/text_color" />-->
 
+            <ImageView
+                android:id="@+id/createFeedbackbtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:padding="10dp"
 
+                android:src="@drawable/arrow_back"
+
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+android:layout_marginLeft="-70dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/cormorant_upright_semibold"
                 android:gravity="center_horizontal"
                 android:text="Feedback"
@@ -102,6 +112,11 @@
 
 
             <!--        </soup.neumorphism.NeumorphCardView>-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/cursor" />
 
             <soup.neumorphism.NeumorphCardView
                 style="@style/Widget.Neumorph.CardView"
@@ -121,7 +136,7 @@
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:src="@drawable/rightarrow" />
+                        android:src="@drawable/user" />
 
 
                     <EditText

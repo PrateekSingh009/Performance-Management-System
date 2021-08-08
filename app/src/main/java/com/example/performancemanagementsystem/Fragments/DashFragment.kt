@@ -8,6 +8,7 @@ import android.view.View
 import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -41,7 +42,7 @@ class DashFragment() : Fragment() {
         val cmpname :TextView = view.findViewById(R.id.nameComp)
         val username :TextView = view.findViewById(R.id.Username)
         val emailval :TextView = view.findViewById(R.id.email)
-        val logout : Button = view.findViewById(R.id.logoutBtn)
+        val logout : ImageView = view.findViewById(R.id.logoutBtn)
         var cmpcode : String = ""
 
         val dbrefCompanyInfo = FirebaseDatabase.getInstance().getReference("CompanyInfo")
@@ -98,12 +99,58 @@ class DashFragment() : Fragment() {
         }
 
         statusCard.setOnClickListener {
+            var value = 0
 
-            val intent = Intent(context, StatusActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.putExtra("Name", username.text)
-            startActivity(intent)
-            activity?.finish()
+            dbrefCompanyInfo.addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        for(snap in snapshot.children){
+                            if(snap.key == FirebaseAuth.getInstance().uid){
+                                value = 1
+                                break;
+                            }
+                        }
+
+                        if(value == 1) {
+                                val intent = Intent(context, ManagerActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                //intent.putExtra("Name", username.text)
+                                startActivity(intent)
+                                activity?.finish()
+
+                        }
+                        else{
+                                val intent = Intent(context, StatusActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                intent.putExtra("Name", username.text)
+                                startActivity(intent)
+                                activity?.finish()
+
+                        }
+
+
+
+
+
+
+
+                    }
+                    else
+                    {
+                        Toast.makeText(context , "Company doesn't Exist",Toast.LENGTH_SHORT).show()
+                    }
+
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+
+            })
+
+
 
 
 
@@ -118,7 +165,9 @@ class DashFragment() : Fragment() {
                     .signOut()
 
                 val intent = Intent(activity, AuthActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
+                activity?.finish()
 
             }
 

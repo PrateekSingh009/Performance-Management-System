@@ -16,47 +16,28 @@
             android:id="@+id/layout_logo"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_marginStart="10dp"
+
 
             android:orientation="horizontal">
-            <soup.neumorphism.NeumorphCardView
-                android:layout_width="30dp"
-                android:layout_height="150dp"
 
-                app:neumorph_shadowColorDark="@color/text_color"
-                android:layout_marginTop="-20dp"
-                />
-            <soup.neumorphism.NeumorphCardView
-                android:layout_width="30dp"
-
-                app:neumorph_shadowColorDark="@color/text_color"
-                android:layout_height="120dp"
-                android:layout_marginTop="-20dp"
-
-                />
-            <soup.neumorphism.NeumorphCardView
-                android:layout_width="30dp"
-                android:layout_height="90dp"
-                app:neumorph_shadowColorDark="@color/text_color"
-                android:layout_marginTop="-20dp"
-                />
 
 
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Performate"
 
-                android:textColor="@color/text_color"
-                android:fontFamily="@font/cinzel_decorative_bold"
-                android:textSize="30sp"
-                android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/text_color"
+            android:fontFamily="@font/cinzel_decorative_bold"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Performate"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
 
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:transitionName="logo_text"/>
+            android:textColor="@color/light_background"
+            android:textSize="40dp" />
 
         </LinearLayout>
         <TextView
@@ -64,7 +45,7 @@
             android:layout_height="5dp"
             android:layout_below="@+id/layout_logo"
             android:background="@drawable/cursor"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/line1"
             android:backgroundTint="@color/text_color"/>
 

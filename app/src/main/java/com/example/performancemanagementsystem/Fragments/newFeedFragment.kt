@@ -1,11 +1,13 @@
 package com.example.performancemanagementsystem.Fragments
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -74,6 +76,15 @@ class newFeedFragment() : Fragment() {
         code = "0"
 
 
+        newFeedBinding.createFeedbackbtn.setOnClickListener {
+
+            val intent = Intent(context, DashScreenActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            activity?.finish()
+
+        }
+
 //        if(generatedcompanyCode==0)
 //        {
         dbrefCompanyInfo.child(FirebaseAuth.getInstance().uid!!).child("companyCode").get()
@@ -118,17 +129,19 @@ class newFeedFragment() : Fragment() {
         //Feedback Already Exist
          dbref.addListenerForSingleValueEvent(object : ValueEventListener{
              override fun onDataChange(snapshot: DataSnapshot) {
-                 if(snapshot.exists()){
-                     for(snap in snapshot.children)
-                     {
+                 if(snapshot.exists()) {
+                     for (snap in snapshot.children) {
                          val feed = snap.getValue(FeedbackModel::class.java)
 
-                         if(feed!!.member == member){
-                             Toast.makeText(context,"Feedback Already Exist",Toast.LENGTH_SHORT).show()
+                         if (feed!!.member == member) {
+                             Toast.makeText(context, "Feedback Already Exist", Toast.LENGTH_SHORT)
+                                 .show()
                              newFeedBinding.memberName.error = "Active Feedback Already Exist"
                              toadd = 1
-                             return }
+                             return
+                         }
                      }
+                 }
                      //Member Exist or not
                      if(toadd == 0){
                          dbrefCompanyInfo.child(FirebaseAuth.getInstance().currentUser!!.uid!!)
@@ -218,7 +231,8 @@ class newFeedFragment() : Fragment() {
                      }
 
 
-                 }
+
+
              }
 
              override fun onCancelled(error: DatabaseError) {

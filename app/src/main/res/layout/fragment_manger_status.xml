@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.MangerStatusFragment">
+
+    <LinearLayout
+        android:id="@+id/performance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:backgroundTint="@color/text_color"
+        android:elevation="30dp">
+
+
+        <ImageView
+            android:id="@+id/statusbackbtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:src="@drawable/backarrow"
+
+            />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+
+            android:fontFamily="@font/cambo"
+            android:gravity="center"
+            android:layout_marginLeft="-50dp"
+            android:text="Performance\nStatus"
+            android:textColor="@color/light_background"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/performance"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cursor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/cairo"
+                android:text="Name : "
+                android:textColor="@color/text_color"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/StatusName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/cairo"
+                android:text="Name : "
+                android:textColor="@color/text_color"
+                android:textSize="15dp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/cairo"
+                android:text="ID : "
+
+
+                android:textColor="@color/text_color"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/StatusMemberID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/cairo"
+
+
+                android:text="ID : "
+                android:textColor="@color/text_color"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="horizontal">-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginLeft="10dp"-->
+        <!--                android:layout_marginTop="10dp"-->
+        <!--                android:layout_marginBottom="10dp"-->
+        <!--                android:fontFamily="@font/cairo"-->
+        <!--                android:text="Company Name : "-->
+        <!--                android:textColor="@color/text_color"-->
+        <!--                android:textSize="15dp"-->
+        <!--                android:textStyle="bold" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/StatusCmpName"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="10dp"-->
+        <!--                android:layout_marginRight="10dp"-->
+        <!--                android:layout_marginBottom="10dp"-->
+        <!--                android:fontFamily="@font/cairo"-->
+
+
+        <!--                android:text="Company Name : "-->
+        <!--                android:textColor="@color/text_color"-->
+        <!--                android:textSize="15dp" />-->
+
+
+        <!--        </LinearLayout>-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@drawable/cursor" />
+
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/detail">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="No Active Feedback"
+                android:textSize="30dp"
+                android:visibility="visible" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barchart"
+                android:layout_width="match_parent"
+                android:layout_height="480dp"
+                android:layout_below="@+id/detail"
+                android:layout_margin="20dp" />
+
+            <TextView
+                android:id="@+id/gap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/barchart"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/biryani_semibold"
+
+                android:textSize="15dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
