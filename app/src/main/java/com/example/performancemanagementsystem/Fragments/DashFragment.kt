@@ -85,7 +85,7 @@ class DashFragment() : Fragment() {
         createCard.setOnClickListener {
 
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.dash_container, newFeedFragment())
+                .replace(R.id.dash_container, newFeedFragment()).addToBackStack(null)
                 .commit()
 
 
@@ -94,7 +94,7 @@ class DashFragment() : Fragment() {
         pendingCard.setOnClickListener {
 
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.dash_container, PendingFeedback(cmpcode))
+                .replace(R.id.dash_container, PendingFeedback(cmpcode)).addToBackStack(null)
                 .commit()
         }
 
@@ -113,18 +113,18 @@ class DashFragment() : Fragment() {
 
                         if(value == 1) {
                                 val intent = Intent(context, ManagerActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+
                                 //intent.putExtra("Name", username.text)
                                 startActivity(intent)
-                                activity?.finish()
+
 
                         }
                         else{
                                 val intent = Intent(context, StatusActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                
                                 intent.putExtra("Name", username.text)
                                 startActivity(intent)
-                                activity?.finish()
+
 
                         }
 

@@ -63,7 +63,7 @@ class FeedbackListAdapter(private val activity: FragmentActivity?, list: ArrayLi
         holder.itemView.setOnClickListener {
 
             activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.dash_container, ResponseFragment(list[position]))
+                .replace(R.id.dash_container, ResponseFragment(list[position])).addToBackStack(null)
                 .commit()
 
             Log.i("Item Clicked Key",position.toString())

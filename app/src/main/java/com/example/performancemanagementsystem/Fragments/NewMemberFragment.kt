@@ -31,7 +31,7 @@ class NewMemberFragment(username : String, email : String, uid : String) : Fragm
         newMemberBinding.newOrg.setOnClickListener {
 
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.auth_container, NewOrgFragment(username,email,uid))
+                .replace(R.id.auth_container, NewOrgFragment(username,email,uid)).addToBackStack(null)
                 .commit()
 
         }

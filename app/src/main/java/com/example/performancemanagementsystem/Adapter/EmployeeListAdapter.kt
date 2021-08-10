@@ -30,7 +30,7 @@ class EmployeeListAdapter(private var context: Context, private var list : Array
         holder.itemView.setOnClickListener {
 
             val intent = Intent(context, ManagerStatusActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+
             intent.putExtra("Name", list[position])
             intent.putExtra("ID", IDlist[position])
             context.startActivity(intent)
