@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:isScrollContainer="true"
+    android:background="@color/light_background"
+
     tools:context=".Fragments.StatusFragment">
 
     <LinearLayout
@@ -33,7 +35,7 @@
 
         android:fontFamily="@font/cambo"
         android:gravity="center"
-android:layout_marginLeft="-50dp"
+        android:layout_marginLeft="-50dp"
         android:text="Performance\nStatus"
         android:textColor="@color/light_background"
         android:textSize="30dp" />
@@ -167,6 +169,7 @@ android:layout_marginLeft="-50dp"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:layout_below="@+id/detail">
 
         <LinearLayout
@@ -181,12 +184,14 @@ android:layout_marginLeft="-50dp"
                 android:gravity="center"
                 android:text="No Active Feedback"
                 android:textSize="30dp"
+                android:textColor="@color/dark_background"
                 android:visibility="visible" />
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barchart"
                 android:layout_width="match_parent"
                 android:layout_height="480dp"
+
                 android:layout_below="@+id/detail"
                 android:layout_margin="20dp" />
 
@@ -197,7 +202,7 @@ android:layout_marginLeft="-50dp"
                 android:layout_below="@id/barchart"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/biryani_semibold"
-
+                android:textColor="@color/dark_background"
                 android:textSize="15dp" />
 
 

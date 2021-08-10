@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_background">#ecf0f3</color>
     <color name="text_color">#193566</color>
+    <color name="hint_color">#8E8E8E</color>
     <color name="dark_background">#292929</color>
     <color name="dark_text_color">#202020</color>
     <color name="shadow_text_color">#323232</color>

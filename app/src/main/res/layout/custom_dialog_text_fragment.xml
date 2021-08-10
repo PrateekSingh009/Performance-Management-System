@@ -54,6 +54,7 @@
                 <EditText
                     android:id="@+id/et_code"
                     android:hint="Code"
+                    android:textColorHint="@color/hint_color"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingStart="20dp"
