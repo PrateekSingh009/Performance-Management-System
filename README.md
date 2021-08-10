@@ -19,7 +19,7 @@ A Peroformance Management System Application for tracking the performance of the
 - Build and run the app.
 
 ## APK
- You can download the zip file of apk [here](https://github.com/DivyanshFalodiya/campus-system/files/6391861/Campus.zip)
+ You can download the zip file of apk [here](https://github.com/PrateekSingh009/Performance-Management-System/releases/download/v1.0/Performate.zip)
  
  ## Screenshots
 
