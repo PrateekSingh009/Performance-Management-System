@@ -1,6 +1,6 @@
 # Performance-Management-System
 ## Description
-A Peroformance Management System Application for tracking the performance of the company's employees using the Feedback System. 
+A Performance Management System Application for tracking the performance of the company's employees using the Feedback System. 
 
 ## Features
 - User can either create a company or join a existing one via the unique company code.
