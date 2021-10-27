@@ -4,7 +4,7 @@ A Performance Management System Application for tracking the performance of the 
 
 ## Features
 - User can either create a company or join a existing one via the unique company code.
-- The head/HR of the company can create and release a Feedback form for amy member of that company.
+- The head/HR of the company can create and release a Feedback form for amy member of the company.
 - Other members can Fill the feedback form for that member. 
 - If there is an active feeback for the user then they can see their Performance Graph.
 
